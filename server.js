@@ -4,7 +4,6 @@ const ttsRoutes = require('./tts/tts.routes');
 const express = require('express');
 const propierties = require('./config/properties');
 
-
 const app = express();
 const router = express.Router();
 

@@ -46,18 +46,16 @@ exports.conversation = (request, response) => {
         return rp(options);
     }
 
-    // Make sure to update User-Agent with the name of your resource.
-    // You can also change the voice and output formats. See:
-    // https://docs.microsoft.com/azure/cognitive-services/speech-service/language-support#text-to-speech
+    
     function textToSpeech(accessToken, text) {
         // Create the SSML request.
         
         let xml_body = xmlbuilder.create('speak')
             .att('version', '1.0')
-            .att('xml:lang', 'en-us')
+            .att('xml:lang', 'es-mx')
             .ele('voice')
-            .att('xml:lang', 'en-us')
-            .att('name', 'Microsoft Server Speech Text to Speech Voice (en-US, Guy24KRUS)')
+            .att('xml:lang', 'es-mx')
+            .att('name', 'Microsoft Server Speech Text to Speech Voice (es-MX, HildaRUS)')
             .txt(text)
             .end();
         // Convert the XML into a string to send in the TTS request.
@@ -83,8 +81,7 @@ exports.conversation = (request, response) => {
                     request.pipe(fs.createWriteStream('TTSOutput.wav'));
                     console.log('\nYour file is ready.\n')
                 }
-            });
-             
+            });  
         return request;   
     }         
 }
