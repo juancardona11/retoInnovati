@@ -3,7 +3,7 @@ const cors = require('cors');
 const ttsRoutes = require('./tts/tts.routes');
 const express = require('express');
 const propierties = require('./config/properties');
-
+const faceRoutes = require('./faceApp/faceApp.routes');
 const app = express();
 const router = express.Router();
 
@@ -11,9 +11,11 @@ const bodyParser = require('body-parser');
 const bodyParserJSON = bodyParser.json();
 const bodyParserURLEncoded = bodyParser.urlencoded({ extended: true });
 
-app.use(bodyParserJSON);
-app.use(bodyParserURLEncoded);
+// app.use(bodyParserJSON);
+// app.use(bodyParserURLEncoded);
 
+app.use(bodyParser.json({limit: '10mb', extended: true}))
+app.use(bodyParser.urlencoded({limit: '10mb', extended: true}))
 app.use(express.static('tts'));
 
 app.use(cors());
@@ -33,7 +35,7 @@ app.use((req, res, next) => {
 app.use('/api', router);
 
 ttsRoutes(router);
-
+faceRoutes(router);
 
 router.get('/', (req, res) => {
   res.send('Hello from home');

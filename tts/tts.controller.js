@@ -16,7 +16,6 @@ exports.conversation = (request, response) => {
     
     async function main() {
         const subscriptionKey = "080373c5f65e4bb494a03794b9012e4c";
-       
         if (!subscriptionKey) {
             throw new Error('Environment variable for your subscription key is not set.')
         };
