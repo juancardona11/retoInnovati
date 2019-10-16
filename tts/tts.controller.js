@@ -46,7 +46,7 @@ exports.conversation = (request, response) => {
     }
 
     
-    function textToSpeech(accessToken, text) {
+  async  function textToSpeech(accessToken, text) {
         // Create the SSML request.
         
         let xml_body = xmlbuilder.create('speak')
@@ -74,18 +74,39 @@ exports.conversation = (request, response) => {
             body: body
         }
 
-        let request = rp(options)
-            .on('response', (response) => {
-                if (response.statusCode === 200) {
-                    request.pipe(fs.createWriteStream('TTSOutput.wav'));
-                    console.log('\nYour file is ready.\n')
-                }
-            });  
-        return request;   
-    }         
+    //    let request =  rp(options)
+    //         .on('response', (response) => {
+    //             if (response.statusCode === 200) {
+    //                 request.pipe(fs.createWriteStream('TTSOutput.wav'));
+    //                 console.log('\nYour file is ready.\n')
+    //             }
+    //         });  
+        
+    //     return request;
+         try{
+           let result = await getAudio(options);  
+           response.send({message:'hola'}); 
+           
+         } catch {
+
+         }
+    }
+    
+            
 }
 
      exports.audio = (request, response) => {
         var file = path.join(__dirname, '../','TTSOutput.wav');
         mediaserver.pipe(request, response, file);
+     }
+
+     function getAudio(options){
+                let request =  rp(options)
+             .on('response', (response) => {
+                 if (response.statusCode === 200) {
+                     request.pipe(fs.createWriteStream('TTSOutput.wav'));
+                     console.log('\nYour file is ready.\n')
+                 }
+            });  
+         return request;
      }
