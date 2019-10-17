@@ -33,7 +33,7 @@ exports.face = (request, response) => {
        
         try {
         let result = JSON.parse(await faceApp(options));
-        response.send({message:'exito'});
+        response.send(result);
         //console.log('hola');
         } catch (err) {
             console.log(`Something went wrong: ${err}`);
