@@ -1,10 +1,5 @@
-'use strict';
-const request = require('request');
-// Replace <Subscription Key> with your valid subscription key.
-const subscriptionKey = 'f0d7619cbda245a9a12b49eabb3e3b88';
-// You must use the same location in your REST call as you used to get your
-// subscription keys. For example, if you got your subscription keys from
-// westus, replace "westcentralus" in the URL below with "westus".
+
+
 
 exports.face = (request, response) => {
 

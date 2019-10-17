@@ -3,7 +3,7 @@ const cors = require('cors');
 const ttsRoutes = require('./tts/tts.routes');
 const express = require('express');
 const propierties = require('./config/properties');
-const faceRoutes = require('./faceApp/faceApp.routes');
+const faceRoutes = require('./faceApp/faceapp.routes');
 const app = express();
 const router = express.Router();
 
