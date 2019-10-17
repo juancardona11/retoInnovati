@@ -1,5 +1,6 @@
 // Requires request and request-promise for HTTP requests
 // e.g. npm install request request-promise
+const request = require('request');
 const rp = require('request-promise');
 // Requires fs to write synthesized speech to a file
 const fs = require('fs');
