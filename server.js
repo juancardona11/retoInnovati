@@ -8,29 +8,29 @@ const app = express();
 const router = express.Router();
 
 const bodyParser = require('body-parser');
-const bodyParserJSON = bodyParser.json();
-const bodyParserURLEncoded = bodyParser.urlencoded({ extended: true });
 
 // app.use(bodyParserJSON);
 // app.use(bodyParserURLEncoded);
 
-app.use(bodyParser.json({limit: '10mb', extended: true}))
-app.use(bodyParser.urlencoded({limit: '10mb', extended: true}))
+app.use(bodyParser.json({limit: '10mb', extended: true}));
+app.use(bodyParser.urlencoded({limit: '10mb', extended: true}));
+app.use(bodyParser.json());
 app.use(express.static('tts'));
 
 app.use(cors());
 
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
-  res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
-  if (req.method === 'OPTIONS'){
-    res.header("Access-Control-Allow-Headers", "X-Requested-With,content-type");
-    return res.status(200).json({});
-  }
-  next();
-});
+// app.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', '*');
+//   res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+//   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+//   res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+//   if (req.method === 'OPTIONS'){
+//     res.header("Access-Control-Allow-Headers", "X-Requested-With,content-type");
+//     res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
+//     return res.status(200).json({});
+//   }
+//   next();
+// });
 
 app.use('/api', router);
 
