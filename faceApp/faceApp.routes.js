@@ -1,4 +1,4 @@
-const Face = require('./faceapp.controller');
+const Face = require('./faceApp.controller');
 
 module.exports = (router) => {
   
