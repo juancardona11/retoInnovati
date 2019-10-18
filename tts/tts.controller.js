@@ -66,9 +66,7 @@ exports.conversation = (request, response) => {
            //Se utiliza la función getAudio para obtener el audio del texto
            let result = await getAudio(options);  
            response.send({message:'Exito'});   
-         } catch {(err)
-            console.log(`Something went wrong: ${err}`);
-         }
+         } catch {}
     }          
 }
 
