@@ -30,12 +30,9 @@ exports.face = (request, response) => {
                 'Ocp-Apim-Subscription-Key' : subscriptionKey
             }
         };
-       
         try {
         let result = JSON.parse(await faceApp(options));
-        
-        response.send({result});
-        //console.log('hola');
+        response.send(result);
         } catch (err) {
             console.log(`Something went wrong: ${err}`);
         }
@@ -47,14 +44,11 @@ exports.face = (request, response) => {
         function faceApp(options){
             return new Promise ( resolve => {
                 request.post(options, (error, response, body) => {
-                
                     if (error) {
                     console.log('Error: ', error);
                     return;
                     }
                     let jsonResponse = JSON.stringify(JSON.parse(body), null, '  ');
-                    //console.log('JSON Response\n');
-                    //console.log(jsonResponse);
                     resolve(jsonResponse);
                     
                 });

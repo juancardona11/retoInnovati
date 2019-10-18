@@ -96,10 +96,7 @@ exports.conversation = (request, response) => {
             
 }
 
-     exports.audio = (request, response) => {
-        var file = path.join(__dirname, '../','TTSOutput.wav');
-        mediaserver.pipe(request, response, file);
-     }
+    
 
      function getAudio(options){
                 let request =  rp(options)
@@ -110,4 +107,9 @@ exports.conversation = (request, response) => {
                  }
             });  
          return request;
+     }
+     
+     exports.audio = (request, response) => {
+        var file = path.join(__dirname, '../','TTSOutput.wav');
+        mediaserver.pipe(request, response, file);
      }
